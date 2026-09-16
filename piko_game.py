@@ -164,4 +164,62 @@ while running:
 
     pygame.display.flip()
 
+pygame.quit()            screen,
+            BLACK,
+            (x, y, width, height),
+            3
+        )
+
+        number_text = font.render(
+            str(number),
+            True,
+            BLACK
+        )
+
+        text_x = x + (
+            width - number_text.get_width()
+        ) // 2
+
+        text_y = y + (
+            height - number_text.get_height()
+        ) // 2
+
+        screen.blit(
+            number_text,
+            (text_x, text_y)
+        )
+
+    # Player
+    pygame.draw.circle(
+        screen,
+        PINK,
+        (player_x, player_y),
+        player_radius
+    )
+
+    pygame.draw.circle(
+        screen,
+        BLACK,
+        (player_x, player_y),
+        player_radius,
+        2
+    )
+
+    # Controls
+    controls = font.render(
+        "A / D = Move",
+        True,
+        BLACK
+    )
+
+    screen.blit(
+        controls,
+        (
+            (WIDTH - controls.get_width()) // 2,
+            660
+        )
+    )
+
+    pygame.display.flip()
+
 pygame.quit()
