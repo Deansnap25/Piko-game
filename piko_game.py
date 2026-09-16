@@ -1043,4 +1043,201 @@ while running:
 
             title = title_font.render(
                 "GAME OVER",
+                True,
+                RED
+            )
+
+        screen.blit(
+            title,
+            (
+                (WIDTH - title.get_width()) // 2,
+                120
+            )
+        )
+
+        time_text = big_font.render(
+            "Time: " + str(round(final_time, 2)) + " seconds",
+            True,
+            BLACK
+        )
+
+        screen.blit(
+            time_text,
+            (
+                (WIDTH - time_text.get_width()) // 2,
+                220
+            )
+        )
+
+        final_score = big_font.render(
+            "Final Score: " + str(score),
+            True,
+            BLACK
+        )
+
+        screen.blit(
+            final_score,
+            (
+                (WIDTH - final_score.get_width()) // 2,
+                280
+            )
+        )
+
+        if lives > 0:
+
+            message = small_font.render(
+                "Faster time = higher score!",
+                True,
+                DARK_PINK
+            )
+
+        else:
+
+            message = small_font.render(
+                "You lost all 3 lives.",
+                True,
+                RED
+            )
+
+        screen.blit(
+            message,
+            (
+                (WIDTH - message.get_width()) // 2,
+                340
+            )
+        )
+
+        draw_button(
+            "PLAY AGAIN",
+            300,
+            400,
+            300,
+            60
+        )
+
+        draw_button(
+            "LEADERBOARD",
+            300,
+            475,
+            300,
+            60
+        )
+
+        info = small_font.render(
+            "R = Play Again    L = Leaderboard    ESC = Menu",
+            True,
+            GRAY
+        )
+
+        screen.blit(
+            info,
+            (
+                (WIDTH - info.get_width()) // 2,
+                570
+            )
+        )
+
+    # =========================
+    # LEADERBOARD
+    # =========================
+
+    elif game_state == LEADERBOARD:
+
+        title = title_font.render(
+            "LEADERBOARD",
+            True,
+            DARK_PINK
+        )
+
+        screen.blit(
+            title,
+            (
+                (WIDTH - title.get_width()) // 2,
+                60
+            )
+        )
+
+        load_leaderboard()
+
+        if len(leaderboard) == 0:
+
+            empty = font.render(
+                "No scores yet.",
+                True,
+                GRAY
+            )
+
+            screen.blit(
+                empty,
+                (
+                    (WIDTH - empty.get_width()) // 2,
+                    250
+                )
+            )
+
+        else:
+
+            y = 160
+
+            for index, item in enumerate(leaderboard):
+
+                name, score_value = item
+
+                rank = font.render(
+                    str(index + 1) + ".",
+                    True,
+                    BLACK
+                )
+
+                name_text = font.render(
+                    name,
+                    True,
+                    BLACK
+                )
+
+                score_text = font.render(
+                    str(score_value),
+                    True,
+                    DARK_PINK
+                )
+
+                screen.blit(
+                    rank,
+                    (220, y)
+                )
+
+                screen.blit(
+                    name_text,
+                    (280, y)
+                )
+
+                screen.blit(
+                    score_text,
+                    (600, y)
+                )
+
+                y += 45
+
+        info = small_font.render(
+            "ESC = Main Menu",
+            True,
+            GRAY
+        )
+
+        screen.blit(
+            info,
+            (
+                (WIDTH - info.get_width()) // 2,
+                600
+            )
+        )
+
+    # =========================
+    # UPDATE SCREEN
+    # =========================
+
+    pygame.display.flip()
+
+
+pygame.quit()
                 
